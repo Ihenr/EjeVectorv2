@@ -1309,7 +1309,35 @@ namespace EjeVector
                 p += 0.2;
             } while (p <= 6);
         }
-    
+
+        private void reloj_Click(object sender, EventArgs e)
+        {
+            Circunferencia circunferencia = new Circunferencia();
+            circunferencia.x0 = -2;
+            circunferencia.y0 = 3;
+            circunferencia.Rd = 2;
+            circunferencia.color0 = Color.Blue;
+            circunferencia.Encender(pixel);
+            pictureBox1.Image = pixel;
+            double t = 0;
+            double dt = 0.1;
+            Segmento segmento = new Segmento();
+            segmento.x0 = -2;
+            segmento.y0 = 3;
+            do
+            {
+                segmento.xf = segmento.x0 + (circunferencia.Rd * (Math.Cos(-t))); ;
+                segmento.yf = segmento.y0 + (circunferencia.Rd * (Math.Sin(-t))); ;
+                segmento.color0 = Color.Red;
+                segmento.Encender(pixel);
+                pictureBox1.Image = pixel;
+                pictureBox1.Refresh();
+                Thread.Sleep(40);
+                segmento.Apagar(pixel);
+                pictureBox1.Image = pixel;
+                t = t + dt;
+            } while (t <= 2 * Math.PI);
+        }
     }
 }
     
